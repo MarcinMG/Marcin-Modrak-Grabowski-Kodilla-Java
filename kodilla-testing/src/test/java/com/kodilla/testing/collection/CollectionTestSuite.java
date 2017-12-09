@@ -6,11 +6,11 @@ import java.util.*;
 public class CollectionTestSuite {
 
     @Before
-    public void Before() {
+    public void before() {
         System.out.println("Test Case: begin");
     }
     @After
-    public void After() {
+    public void after() {
         System.out.println("Test Case: end");
     }
     @Test
@@ -18,10 +18,11 @@ public class CollectionTestSuite {
         //Given
         ArrayList<Integer> testList = new ArrayList<Integer>();
         OddNumbersExterminator tester = new OddNumbersExterminator();
+        ArrayList<Integer> resultList = tester.exterminate(testList);
 
         System.out.println("Testing empty list");
 
-        Assert.assertTrue(tester.exterminate(testList).isEmpty());
+        Assert.assertEquals(testList, resultList);
     }
     @Test
     public void testOddNumbersExterminatorNormalList() {
@@ -30,18 +31,14 @@ public class CollectionTestSuite {
         testList.add(3);
         testList.add(4);
         testList.add(10);
+        ArrayList<Integer> evenList = new ArrayList<Integer>();
+        evenList.add(4);
+        evenList.add(10);
         OddNumbersExterminator tester = new OddNumbersExterminator();
+        ArrayList<Integer> resultList = tester.exterminate(testList);
 
         System.out.println("Testing normal list");
 
-        boolean testNormal = true;
-        for(Integer hasOddNumbers : tester.exterminate(testList)) {
-            if(hasOddNumbers % 2 != 0) {
-                testNormal = false;
-                break;
-            }
-        }
-        Assert.assertFalse(testNormal == false);
-
+        Assert.assertEquals(evenList, resultList);
     }
 }
