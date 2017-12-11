@@ -25,11 +25,7 @@ public class ShapeCollector {
         return theFigure;
     }
     public ArrayList<Shape> showFigures() {
-        ArrayList<Shape> theFigures = new ArrayList<Shape>();
-        for(Shape tempFigures : figures) {
-            theFigures.add(tempFigures);
-        }
-        return theFigures;
+        return new ArrayList(figures);
     }
     public int getFiguresQuantity(){
         return figures.size();

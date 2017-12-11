@@ -1,6 +1,5 @@
-package com.kodilla.testing.shape.tdd;
+package com.kodilla.testing.shape;
 
-import com.kodilla.testing.shape.*;
 import org.junit.*;
 import java.util.ArrayList;
 
@@ -80,5 +79,25 @@ public class ShapeCollectorTestSuite {
         Assert.assertEquals(figureShow.get(0), circle);
         Assert.assertEquals(figureShow.get(1), square);
         Assert.assertEquals(figureShow.get(2), triangle);
+    }
+    @Test
+    public void testSumFields() {
+        //Given
+        Shape circle = new Circle("Circle", 5);
+        Shape square = new Square("Square", 4);
+        Shape triangle = new Triangle("Triangle", 3, 2);
+        ShapeCollector newShape = new ShapeCollector();
+        newShape.addFigure(circle);
+        newShape.addFigure(square);
+        newShape.addFigure(triangle);
+        //When
+        ArrayList<Shape> figureShow =  newShape.showFigures();
+        double sumFields = 0.0;
+        for(Shape  tempShow : figureShow) {
+           sumFields += tempShow.getField();
+        }
+        //Then
+        double expectedSum = Math.PI*5*5 + 4*4 + 0.5*3*2;
+        Assert.assertEquals(expectedSum, sumFields, 0);
     }
 }
