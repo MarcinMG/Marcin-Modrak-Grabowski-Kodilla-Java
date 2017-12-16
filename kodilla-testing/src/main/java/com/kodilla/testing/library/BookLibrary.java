@@ -20,26 +20,19 @@ public class BookLibrary {
     }
 
     public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
-        List<Book> bookList1234567890 = new ArrayList<Book>();
-        List<Book> bookList1111111111 = new ArrayList<Book>();
-        List<Book> bookList5555555555 = new ArrayList<Book>();
-        Book book1 = new Book("Secrets of Alamo", "John Smith", 2008);;
-        bookList1111111111.add(book1);
-        for(int n = 1; n <= 5; n++){
-            Book book2 = new Book("Title " + n, "Author " + n, 1970 + n);
-            bookList5555555555.add(book2);
-        }
+        List<Book> bookList = new ArrayList<Book>();;
+        List<Book> resultList1 = libraryDatabase.listBooksInHandsOf(libraryUser);
 
         if(libraryUser.peselId == "1234567890") {
-            return bookList1234567890;
+            return resultList1;
         }
         else if(libraryUser.peselId == "1111111111") {
-            return bookList1111111111;
+            return resultList1;
         }
         else if(libraryUser.peselId == "5555555555") {
-            return bookList5555555555;
+            return resultList1;
         }
-        else return bookList1234567890;
+        else return bookList;
 
     }
 }
