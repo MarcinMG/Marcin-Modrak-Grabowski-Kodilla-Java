@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Continent {
-    private final List<Country> continentName = new ArrayList<>();
+    private final List<Country> countryList = new ArrayList<>();
 
     public List<Country> getContinentName() {
-        return continentName;
+        return countryList;
     }
 
     public void addCountry(Country country){
-        continentName.add(country);
+        countryList.add(country);
     }
 }
