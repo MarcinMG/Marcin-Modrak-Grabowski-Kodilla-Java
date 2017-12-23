@@ -127,19 +127,15 @@ public class BoardTestSuite {
         //When
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
-        long sumTasks = project.getTaskLists().stream()
+        double sumTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
                 .map(t -> t.getCreated())
-                .map(t2 -> t2.toEpochDay())
-                .reduce(0L,(sum, current) -> sum = sum+LocalDate.now().toEpochDay()-current);
-        long quantityTasks = project.getTaskLists().stream()
-                .filter(inProgressTasks::contains)
-                .flatMap(tl -> tl.getTasks().stream())
-                .map(t -> t.getCreated())
-                .count();
+                .map(t2 -> LocalDate.now().toEpochDay()-t2.toEpochDay())
+                .mapToDouble(t3 -> t3)
+                .average().getAsDouble();
         //Then
-        Assert.assertEquals(10, sumTasks / quantityTasks);
+        Assert.assertEquals(10, sumTasks,0);
     }
 
     @Test
