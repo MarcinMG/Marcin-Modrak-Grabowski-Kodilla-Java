@@ -2,7 +2,11 @@ package com.kodilla.stream.portfolio;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
@@ -117,25 +121,6 @@ public class BoardTestSuite {
     }
 
     @Test
-    public void testAddTaskListFindLongTasks() {
-        //Given
-        Board project = prepareTestData();
-
-        //When
-        List<TaskList> inProgressTasks = new ArrayList<>();
-        inProgressTasks.add(new TaskList("In progress"));
-        long longTasks = project.getTaskLists().stream()
-                .filter(inProgressTasks::contains)
-                .flatMap(tl -> tl.getTasks().stream())
-                .map(t -> t.getCreated())
-                .filter(d -> d.compareTo(LocalDate.now().minusDays(10)) <= 0)
-                .count();
-
-        //Then
-        Assert.assertEquals(2, longTasks);
-    }
-
-    @Test
     public void testAddTaskListAverageWorkingOnTask() {
         //Given
         Board project = prepareTestData();
@@ -146,10 +131,36 @@ public class BoardTestSuite {
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
                 .map(t -> t.getCreated())
-                //.filter(d -> d.compareTo(LocalDate.now().minusDays(10)) <= 0)
+                .map(t2 -> t2.toEpochDay())
+                .reduce(0L,(sum, current) -> sum = sum+LocalDate.now().toEpochDay()-current);
+        long quantityTasks = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> t.getCreated())
                 .count();
         //Then
-        Assert.assertEquals(3, sumTasks);
+        Assert.assertEquals(10, sumTasks / quantityTasks);
+    }
 
+    @Test
+    public void testAddTaskListFindLongTasks() {
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        long longTasks = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .peek(c -> System.out.println("In progress: " + c))
+                .flatMap(tl -> tl.getTasks().stream())
+                .peek(c -> System.out.println("After flat map: " + c))
+                .map(t -> t.getCreated())
+                .peek(c -> System.out.println("Date created: " + c))
+                .filter(d -> d.compareTo(LocalDate.now().minusDays(10)) <= 0)
+                .count();
+
+        //Then
+        Assert.assertEquals(2, longTasks);
     }
 }
