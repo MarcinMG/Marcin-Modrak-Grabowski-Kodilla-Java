@@ -139,6 +139,26 @@ public class BoardTestSuite {
     }
 
     @Test
+    public void testTest() {
+        Board project = prepareTestData();
+        //When
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        List<Task> tasks =  project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .collect(toList());
+        List<LocalDate> localDates = tasks.stream()
+                .map(Task::getCreated)
+                .collect(toList());
+        List<Long> collect = localDates.stream()
+                .map(t2 -> LocalDate.now().toEpochDay() - t2.toEpochDay())
+                .collect(toList());
+
+        Assert.assertEquals(10, collect);
+    }
+
+    @Test
     public void testAddTaskListFindLongTasks() {
         //Given
         Board project = prepareTestData();
