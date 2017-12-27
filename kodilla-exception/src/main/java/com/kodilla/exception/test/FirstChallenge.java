@@ -7,6 +7,9 @@ public class FirstChallenge {
     public double divide(double a, double b) throws ArithmeticException {
 
         try {
+            if(b == 0){
+                throw new ArithmeticException();
+            }
             return a / b;
         }catch (ArithmeticException e) {
             return 0;
