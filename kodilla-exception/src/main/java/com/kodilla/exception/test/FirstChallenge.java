@@ -6,16 +6,10 @@ public class FirstChallenge {
 
     public double divide(double a, double b) throws ArithmeticException {
 
-        try {
             if(b == 0){
                 throw new ArithmeticException();
             }
             return a / b;
-        }catch (ArithmeticException e) {
-            return 0;
-        }finally {
-            System.out.println("Im gonna be here.. always");
-        }
     }
 
     /**
@@ -26,9 +20,13 @@ public class FirstChallenge {
 
         FirstChallenge firstChallenge = new FirstChallenge();
 
-        double result = firstChallenge.divide(3, 0);
-
-        System.out.println(result);
+        try {
+            System.out.println(firstChallenge.divide(3, 0));
+        } catch (ArithmeticException e) {
+            System.out.println("eee");
+        }finally {
+            System.out.println("Im gonna be here.. always");
+        }
 
     }
 }
