@@ -15,4 +15,12 @@ public class Flight {
     public String getArrivalAirport() {
         return arrivalAirport;
     }
+
+    public void setDepartureAirport(String departureAirport) {
+        this.departureAirport = departureAirport;
+    }
+
+    public void setArrivalAirport(String arrivalAirport) {
+        this.arrivalAirport = arrivalAirport;
+    }
 }
