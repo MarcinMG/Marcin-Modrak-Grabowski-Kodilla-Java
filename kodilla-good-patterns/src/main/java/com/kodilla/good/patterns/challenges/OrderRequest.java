@@ -4,21 +4,26 @@ import java.time.LocalDate;
 
 public class OrderRequest {
 
-    public User user;
-    public Product product;
+    public String name;
+    public String surName;
+    public String productName;
     public LocalDate productOrderDate;
 
-    public OrderRequest(final User user, final Product product, final LocalDate productOrderDate) {
-        this.user = user;
-        this.product = product;
+    public OrderRequest(String name, String surName, String productName, LocalDate productOrderDate) {
+        this.name = name;
+        this.surName = surName;
+        this.productName = productName;
         this.productOrderDate = productOrderDate;
     }
 
-    public User getUser() {
-        return user;
+    public String getName() {
+        return name;
     }
-    public Product getProduct() {
-        return product;
+    public String getSurName() {
+        return surName;
+    }
+    public String getProductName() {
+        return productName;
     }
     public LocalDate getProductOrderDate() {
         return productOrderDate;

@@ -1,5 +1,5 @@
 package com.kodilla.good.patterns.challenges;
 
 public interface InformationService {
-    public void inform(User user);
+    public void inform(String name, String surName);
 }

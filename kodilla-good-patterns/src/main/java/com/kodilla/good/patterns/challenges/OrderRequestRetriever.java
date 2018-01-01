@@ -4,14 +4,8 @@ import java.time.LocalDate;
 
 public class OrderRequestRetriever {
 
-    public OrderRequest retrieve() {
+    public OrderRequest retrieve(String name, String surName, String productName, LocalDate productOrderDate) {
 
-        User user = new User("Marcin", "Modrak-Grabowski");
-
-        Product product = new Product("Kapcie");
-
-        LocalDate productOrderDate = LocalDate.of(2018, 01, 01);
-
-        return new OrderRequest(user, product, productOrderDate);
+        return new OrderRequest(name, surName, productName, productOrderDate);
     }
 }

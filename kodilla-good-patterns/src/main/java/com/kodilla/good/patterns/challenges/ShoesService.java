@@ -3,8 +3,8 @@ package com.kodilla.good.patterns.challenges;
 import java.time.LocalDate;
 
 public class ShoesService implements  OrderService{
-    public boolean order(User user, Product product, LocalDate productOrderDate) {
-        System.out.println("Ordered " + product.getProductName() + " for " + user.getName() + " " + user.getSurname()
+    public boolean order(String name, String surName, String productName, LocalDate productOrderDate) {
+        System.out.println("Ordered " + productName + " for " + name + " " + surName
         + " on dated " + productOrderDate);
         return true;
     }
