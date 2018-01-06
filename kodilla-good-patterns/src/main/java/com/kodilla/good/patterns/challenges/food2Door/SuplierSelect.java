@@ -1,36 +1,36 @@
 package com.kodilla.good.patterns.challenges.food2Door;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 
 public class SuplierSelect {
 
     OrderReq orderReq;
-    HashSet<Product> productExtraFoodShop, productHealthyShop, productGlutenFreeShop;
 
-    public SuplierSelect(OrderReq orderReq, HashSet<Product> productExtraFoodShop, HashSet<Product> productHealthyShop,
-                         HashSet<Product> productGlutenFreeShop) {
+    public SuplierSelect(OrderReq orderReq) {
         this.orderReq = orderReq;
-        this.productExtraFoodShop = productExtraFoodShop;
-        this.productHealthyShop = productHealthyShop;
-        this.productGlutenFreeShop = productGlutenFreeShop;
     }
 
-    String select() {
+    HashSet<Product> productExtraFoodShop = new HashSet<>();
+    HashSet<Product> productHealthyShop = new HashSet<>();
+    HashSet<Product> productGlutenFreeShop = new HashSet<>();
+
+    Supplier select() {
         for (Product theProduct : productExtraFoodShop) {
             if ((theProduct.productName == orderReq.productName) && (theProduct.productQuantity >= orderReq.productQuantity)){
-                return "ExtraFoodShop";
+                return new ExtraFoodShop();
             }
         }
          for(Product theProduct : productHealthyShop) {
              if ((theProduct.productName == orderReq.productName) && (theProduct.productQuantity >= orderReq.productQuantity)){
-                 return "HealthyShop";
+                 return new HealthyShop();
              }
          }
          for(Product theProduct : productGlutenFreeShop) {
             if ((theProduct.productName == orderReq.productName) && (theProduct.productQuantity >= orderReq.productQuantity)){
-                return "GlutenFreeShop";
+                return new GlutenFreeShop();
             }
         }
-        return "not found";
+        return new NoFoundProductInfo();
     }
 }

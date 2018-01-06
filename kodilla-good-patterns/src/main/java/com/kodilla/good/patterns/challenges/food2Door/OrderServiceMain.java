@@ -6,7 +6,7 @@ public class OrderServiceMain {
 
     public static void main(String[] args) {
 
-        OrderReq orderReq = new OrderReq("Marchew", 1000,
+        OrderReq orderReq = new OrderReq("Jajka", 100,
                 LocalDate.of(2018, 02,15), false);
 
         Product product1 = new Product("Marchew", 2000,
@@ -16,18 +16,17 @@ public class OrderServiceMain {
         Product product3 = new Product("Jajka", 500,
                 LocalDate.of(2018, 05, 01), true);
 
-        ExtraFoodShop extraFoodShop = new ExtraFoodShop();
-        extraFoodShop.getProductExtraFoodShop().add(product1);
-        HealthyShop healthyShop = new HealthyShop();
-        healthyShop.getProductHealthyShop().add(product3);
-        GlutenFreeShop glutenFreeShop = new GlutenFreeShop();
-        glutenFreeShop.getProductGlutenFreeShop().add(product2);
+        SuplierSelect suplierSelect = new SuplierSelect(orderReq);
 
-        SuplierSelect suplierSelect = new SuplierSelect(orderReq, extraFoodShop.getProductExtraFoodShop(),
-                healthyShop.getProductHealthyShop(), glutenFreeShop.getProductGlutenFreeShop());
+        suplierSelect.productExtraFoodShop.add(product1);
+        suplierSelect.productHealthyShop.add(product3);
+        suplierSelect.productGlutenFreeShop.add(product2);
 
-        FinishOrder finishOrder = new FinishOrder(suplierSelect.select(), extraFoodShop, healthyShop, glutenFreeShop);
-        finishOrder.finish();
+        if(suplierSelect.select().process()) {
+            System.out.println("Proces zamówienia zakończono pomyślnie");
+        } else {
+            System.out.println("Nie złożono zamówienia");
+        }
 
     }
 }
