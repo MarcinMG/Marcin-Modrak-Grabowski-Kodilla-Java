@@ -100,7 +100,7 @@ public class FlightSearch {
                         })
                         .collect(Collectors.toCollection(HashSet::new));
 
-                System.out.println("# ilość znalezionych lotów: " + theResultChange.size()/2);
+                System.out.println("# ilość znalezionych połączen: " + theResultChange.size()/2);
             }else System.out.println("Nie znaleziono miasta lub miasta są takie same");
         }
     }
