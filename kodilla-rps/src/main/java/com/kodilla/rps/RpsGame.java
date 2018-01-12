@@ -41,7 +41,7 @@ public class RpsGame {
         System.out.println("  *Punkt dla gracza");
     }
 
-    public void setComputerChoice() {
+    public void setComputerScore() {
         computerScore++;
         System.out.println("  *Punkt dla komputera");
     }
@@ -100,15 +100,15 @@ public class RpsGame {
 
                 if (!playerChoice.equals(computerChoiceString)) {
                     if ((playerChoice.equals("KAMIEŃ")) && (computerChoiceString.equals("PAPIER"))) {
-                        setComputerChoice();
+                        setComputerScore();
                     } else if ((playerChoice.equals("KAMIEŃ")) && (computerChoiceString.equals("NOŻYCE"))) {
                         setPlayerScore();
                     } else if ((playerChoice.equals("PAPIER")) && (computerChoiceString.equals("KAMIEŃ"))) {
                         setPlayerScore();
                     } else if ((playerChoice.equals("PAPIER")) && (computerChoiceString.equals("NOŻYCE"))) {
-                        setComputerChoice();
+                        setComputerScore();
                     } else if ((playerChoice.equals("NOŻYCE")) && (computerChoiceString.equals("KAMIEŃ"))) {
-                        setComputerChoice();
+                        setComputerScore();
                     } else {
                         setPlayerScore();
                     }
