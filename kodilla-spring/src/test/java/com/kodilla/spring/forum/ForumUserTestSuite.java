@@ -19,7 +19,7 @@ public class ForumUserTestSuite {
 
         ForumUser forumUser = context.getBean(ForumUser.class);
         //When
-        String username = forumUser.username;
+        String username = forumUser.getUsername();
         //Then
         Assert.assertEquals("John Smith", username);
     }
