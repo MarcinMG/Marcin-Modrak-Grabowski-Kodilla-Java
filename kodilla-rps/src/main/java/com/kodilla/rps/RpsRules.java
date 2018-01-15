@@ -29,10 +29,20 @@ public class RpsRules {
         name = scanner.nextLine();
         do {
             System.out.print("Podaj do ilu wygranych: ");
-            wins = scanner.nextInt();
+           // wins = scanner.nextInt();
+            wins = conwertuj(scanner.nextLine());
         }while (wins<1);
         setPlayerName(name);
         setNumberOfWins(wins);
+    }
 
+    public int conwertuj(String wins) {
+        int wynik =0;
+        try {
+            wynik = Integer.parseInt(wins);
+        }catch (NumberFormatException e) {
+            System.out.println("wpisz poprawna liczbe");
+        }
+        return wynik;
     }
 }
