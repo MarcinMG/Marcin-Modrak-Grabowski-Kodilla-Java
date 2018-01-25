@@ -1,7 +1,9 @@
 package com.kodilla.patterns.builder.bigmac;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public final class Bigmac {
     private final boolean roll;
@@ -14,8 +16,6 @@ public final class Bigmac {
         private int burgers;
         private String sauce;
         private List<String> ingredients = new ArrayList<>();
-        private String posibleIngredients[] = {"sałata", "cebula", "bekon", "ogórek", "papryczki chilli", "pieczarki",
-                "krewetki", "ser"};
         private boolean ifFoundIngredient = false;
 
         public BigmacBuilder roll(boolean roll) {
@@ -39,15 +39,26 @@ public final class Bigmac {
         }
 
         public Bigmac build() {
-            if ((!sauce.equals("standard")) && (!sauce.equals("1000 wysp")) && (!sauce.equals("barbecue"))) {
+            Set<String> posibleSauce = new HashSet<>();
+            posibleSauce.add("standard");
+            posibleSauce.add("1000 wysp");
+            posibleSauce.add("barbecue");
+            if (!posibleSauce.contains(sauce)) {
                 throw new IllegalStateException("Sos " + sauce + " nie znaleziony");
             }
+            Set<String> posibleIngredients = new HashSet<>();
+            posibleIngredients.add("sałata");
+            posibleIngredients.add("cebula");
+            posibleIngredients.add("bekon");
+            posibleIngredients.add("ogórek");
+            posibleIngredients.add("papryczki chilli");
+            posibleIngredients.add("pieczarki");
+            posibleIngredients.add("krewetki");
+            posibleIngredients.add("ser");
             for(String skladnik : ingredients) {
-                for(int i=0; i < posibleIngredients.length; i++) {
-                    if (skladnik.equals(posibleIngredients[i])) {
+                if(posibleIngredients.contains(skladnik)) {
                         ifFoundIngredient = true;
                     }
-                }
                 if (!ifFoundIngredient) {
                     throw new IllegalStateException("Skladnik " + skladnik + " niedostepny");
                 }

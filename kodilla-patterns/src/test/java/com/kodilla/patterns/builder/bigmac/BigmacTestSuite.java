@@ -3,6 +3,8 @@ package com.kodilla.patterns.builder.bigmac;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashSet;
+
 public class BigmacTestSuite {
     @Test
     public void testBigmacNew() {
