@@ -19,9 +19,33 @@ public class SudokuBoard {
 
     @Override
     public String toString() {
-        return "SudokuBoard{" +
-                "board=" + board +
-                '}';
+        System.out.format("╔═══════════╦══════════╦═══════════╗%n");
+        System.out.format("║" + board.get(0) + " ║%n");
+        System.out.format("║" + board.get(1) + " ║%n");
+        System.out.format("║" + board.get(2) + " ║%n");
+        System.out.format("╟═══════════╬══════════╬═══════════╢%n");
+        System.out.format("║" + board.get(3) + " ║%n");
+        System.out.format("║" + board.get(4) + " ║%n");
+        System.out.format("║" + board.get(5) + " ║%n");
+        System.out.format("╟═══════════╬══════════╬═══════════╢%n");
+        System.out.format("║" + board.get(6) + " ║%n");
+        System.out.format("║" + board.get(7) + " ║%n");
+        System.out.format("║" + board.get(8) + " ║%n");
+        System.out.format("╚═══════════╩══════════╩═══════════╝%n");
+        System.out.format("+----------+--------+---------+%n");
+        System.out.format("|" + board.get(0) + " |%n");
+        System.out.format("|" + board.get(1) + " |%n");
+        System.out.format("|" + board.get(2) + " |%n");
+        System.out.format("+----------+--------+---------+%n");
+        System.out.format("|" + board.get(3) + " |%n");
+        System.out.format("|" + board.get(4) + " |%n");
+        System.out.format("|" + board.get(5) + " |%n");
+        System.out.format("+----------+--------+---------+%n");
+        System.out.format("|" + board.get(6) + " |%n");
+        System.out.format("|" + board.get(7) + " |%n");
+        System.out.format("|" + board.get(8) + " |%n");
+        System.out.format("+----------+--------+---------+%n");
+        return "";
     }
 
     public void setBoard(ArrayList<SudokuRow> board) {

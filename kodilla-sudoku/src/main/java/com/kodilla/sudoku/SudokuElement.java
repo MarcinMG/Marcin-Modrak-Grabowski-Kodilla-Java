@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SudokuElement {
 
-    private int value = -1;
+    private int value = 1;
     ArrayList<Integer> possibleValues = new ArrayList<>();
 
     public void makePossibleValues() {
@@ -21,9 +21,7 @@ public class SudokuElement {
 
     @Override
     public String toString() {
-        return "SudokuElement{" +
-                "value=" + value +
-                '}';
+        return  " " + value;
     }
 
     public void setValue(int value) {

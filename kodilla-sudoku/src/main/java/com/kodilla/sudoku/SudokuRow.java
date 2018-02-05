@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class SudokuRow {
 
     int rowNumber;
-    public static int EMPTY = -1;
+    public static int EMPTY = 1;
     ArrayList<SudokuElement> row = new ArrayList<>();
 
     public void makeRow() {
@@ -21,10 +21,19 @@ public class SudokuRow {
 
     @Override
     public String toString() {
-        return "SudokuRow{" + '\n' +
-                "rowNumber=" + rowNumber +
-                ", row=" + row +
-                '}';
+        String formattedString1 = row.subList(0, 3).toString()
+                .replace(",", "")
+                .replace("[", "")
+                .replace("]", "");
+        String formattedString2 = row.subList(3, 6).toString()
+                .replace(",", "")
+                .replace("[", "")
+                .replace("]", "");
+        String formattedString3 = row.subList(6, 9).toString()
+                .replace(",", "")
+                .replace("[", "")
+                .replace("]", "");
+        return formattedString1 + " |" + formattedString2 + " |" + formattedString3;
     }
 
     public void setElement(int elementNumber, int elementValue) {

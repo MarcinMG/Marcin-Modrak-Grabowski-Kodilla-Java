@@ -8,10 +8,16 @@ public class SudokuGame {
 
         SudokuBoard sudokuBoard = new SudokuBoard();
         sudokuBoard.makeBoard();
-        sudokuBoard.showRow(0);
-        System.out.println(sudokuBoard);
         sudokuBoard.setElementInRow(8,8,9);
-        System.out.println(sudokuBoard);
+        String formattedString = sudokuBoard.toString()
+                .replace(",", "")
+                .replace("[", "")
+                .replace("]", "")
+                .replace(" ", "");
+        System.out.println(formattedString);
+
+       // sudokuBoard.setElementInRow(8,8,9);
+      //  System.out.println(sudokuBoard);
 
 //        SudokuRow sudokuTestRow = new SudokuRow();
 //        sudokuTestRow.makeRow();
