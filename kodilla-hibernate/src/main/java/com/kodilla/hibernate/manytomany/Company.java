@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.retrieveCompanyWithFirstThreeLetters",
+        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME REGEXP \"^Dat\"",
+        resultClass = Company.class
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
