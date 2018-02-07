@@ -7,7 +7,8 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Company.retrieveCompanyWithFirstThreeLetters",
-        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME REGEXP \"^Dat\"",
+       // query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME REGEXP \"^Dat\"",
+        query = "SELECT * FROM COMPANIES WHERE SUBSTRING(COMPANY_NAME, 1, 3) = :PARTNAME",
         resultClass = Company.class
 )
 @Entity

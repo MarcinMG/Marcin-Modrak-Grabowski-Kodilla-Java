@@ -5,7 +5,6 @@ import com.kodilla.hibernate.manytomany.Employee;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -99,7 +98,7 @@ public class CompanyDaoTestSuite {
         int greyMatterId = greyMatter.getId();
 
         List<Employee> employeesSmith = employeeDao.retrieveByLastname("Smith");
-        List<Company> companies = companyDao.retrieveCompanyWithFirstThreeLetters();
+        List<Company> companies = companyDao.retrieveCompanyWithFirstThreeLetters("dat");
 
         //Then
         Assert.assertEquals(1, employeesSmith.size());
