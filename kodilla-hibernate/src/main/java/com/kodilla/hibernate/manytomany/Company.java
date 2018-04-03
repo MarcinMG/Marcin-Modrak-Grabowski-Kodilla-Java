@@ -5,12 +5,19 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedNativeQuery(
-        name = "Company.retrieveCompanyWithFirstThreeLetters",
-       // query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME REGEXP \"^Dat\"",
-        query = "SELECT * FROM COMPANIES WHERE SUBSTRING(COMPANY_NAME, 1, 3) = :PARTNAME",
-        resultClass = Company.class
-)
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name="Company.retrieveCompanyWithFirstThreeLetters",
+                // query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME REGEXP \"^Dat\"",
+                query = "SELECT * FROM COMPANIES WHERE SUBSTRING(COMPANY_NAME, 1, 3) = :PARTNAME",
+                resultClass = Company.class
+        ),
+        @NamedNativeQuery(
+                name ="Company.retrieveCompaniesByPartName",
+                query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE :PARTNAME",
+                resultClass = Company.class
+        )
+})
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

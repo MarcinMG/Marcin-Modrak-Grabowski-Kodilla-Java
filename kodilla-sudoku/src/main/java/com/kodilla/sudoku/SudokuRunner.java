@@ -8,8 +8,13 @@ public class SudokuRunner {
 
         while(!gameFinished) {
             SudokuGame theGame = new SudokuGame();
-            System.out.println("R - Rozwiaz kolejne Sudoku  Z - Zakoncz program");
-            gameFinished = theGame.resolveSudoku();
+            SudokuBoard sudokuBoard = theGame.createEmptyBoard();
+            sudokuBoard.makeBlocks(sudokuBoard);
+            theGame.showSudokuBoard(sudokuBoard);
+            theGame.fillSudoku(sudokuBoard);
+            gameFinished = theGame.resolveSudoku(sudokuBoard);
+            theGame.showSudokuBoard(sudokuBoard);
+            System.out.println("Sudoku rozwiazane? " + gameFinished);
         }
 
     }

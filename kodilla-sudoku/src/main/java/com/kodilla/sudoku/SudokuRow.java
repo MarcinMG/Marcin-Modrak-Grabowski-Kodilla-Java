@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class SudokuRow {
 
     int rowNumber;
-    public static int EMPTY = 1;
     ArrayList<SudokuElement> row = new ArrayList<>();
 
     public void makeRow() {
@@ -15,8 +14,18 @@ public class SudokuRow {
         }
     }
 
+    public ArrayList<SudokuElement> getRow() {
+        return row;
+    }
+
     public void showElements(int number) {
         System.out.println(row.get(number));
+    }
+
+    public void removeOnePossibleValueFromAllElementsInRow(int value) {
+        for(int i = 0; i < 9; i++) {
+            getRow().get(i).removeElementFromPossibleValues(value);
+        }
     }
 
     @Override

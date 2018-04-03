@@ -1,4 +1,4 @@
-package com.kodilla.rps;
+package converter;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +15,6 @@ public class Converter {
 
         ArrayList<Integer> array = new ArrayList<>();
         do {
-            System.out.println(binaryNumber % 10);
             array.add(binaryNumber % 10);
             binaryNumber /= 10;
         }while (binaryNumber > 0);
@@ -29,4 +28,5 @@ public class Converter {
         System.out.println(resultNumber);
     }
 }
+
 
