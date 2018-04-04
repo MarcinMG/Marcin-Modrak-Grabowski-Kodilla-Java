@@ -64,13 +64,14 @@ public class ManytomanyFacadeTestSuite {
         List<Company> matchesCompaniesWithTer = facade.searchCompanyByPartName("ter");
 
         //Then
+
+        Assert.assertEquals(0, matchesEmployeesWithItz.size());
+        Assert.assertEquals(2, matchesEmployeesWithRck.size());
+        Assert.assertEquals(0, matchesCompaniesWithAbc.size());
+        Assert.assertEquals(10, matchesCompaniesWithTer.size());
+
+        //CleanUp
         try {
-            Assert.assertEquals(0, matchesEmployeesWithItz.size());
-            Assert.assertEquals(2, matchesEmployeesWithRck.size());
-            Assert.assertEquals(0, matchesCompaniesWithAbc.size());
-            Assert.assertEquals(10, matchesCompaniesWithTer.size());
-        } finally {
-            //CleanUp
             if (companyDao.exists(softwareMachineId)) {
                 companyDao.delete(softwareMachineId);
             }
@@ -80,7 +81,8 @@ public class ManytomanyFacadeTestSuite {
             if (companyDao.exists(greyMatterId)) {
                 companyDao.delete(greyMatterId);
             }
+        }catch(Exception e){
+                //do nothing
+            }
         }
-    }
-
 }
