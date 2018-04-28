@@ -60,12 +60,12 @@ public class SudokuBoard {
         System.out.format("║" + board.get(7) + " ║%n");
         System.out.format("║" + board.get(8) + " ║%n");
         System.out.format("╚═══════════╩══════════╩═══════════╝%n");
-        for(int i = 0; i < 9; i++){
-            for(int j = 0; j < 9; j++) {
-                System.out.print(" "+getBoard().get(i).getRow().get(j).possibleValues.size());
-            }
-            System.out.println();
-        }
+//        for(int i = 0; i < 9; i++){
+//            for(int j = 0; j < 9; j++) {
+//                System.out.print(" "+getBoard().get(i).getRow().get(j).possibleValues.size());
+//            }
+//            System.out.println();
+//        }
         return "";
     }
 

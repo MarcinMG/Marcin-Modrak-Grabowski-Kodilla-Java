@@ -23,7 +23,7 @@ public class SudokuGame {
         Boolean endFillSudoku;
         do {
             endFillSudoku = setElement(sudokuBoard);
-        }while (!endFillSudoku);
+        }while ((!endFillSudoku) || (!checkAllElementsSet(sudokuBoard)));
     }
 
     public Boolean setElement(SudokuBoard sudokuBoard) {
@@ -51,12 +51,16 @@ public class SudokuGame {
             else if (checkValue(sudokuBoard, rowNumber, columnNumber, value)) {
                 System.out.println("Podaj inną wartośc dla tych współrzędnych");
             }
+            else if(checkEmptyValue(sudokuBoard, rowNumber, columnNumber)) {
+                System.out.println("Brak wolnej liczby dla tego pola.");
+                return true;
+            }
             else {
                 sudokuBoard.setElementInRow(rowNumber-1,columnNumber-1, value);
-                sudokuBoard.getBoard().get(rowNumber-1).removeOnePossibleValueFromAllElementsInRow(value);
-                sudokuBoard.removeOnePossibleValueFromAllElementsInColumn(sudokuBoard, columnNumber-1, value);
-                sudokuBoard.removeOnePossibleValueFromAllElementsInBlock(sudokuBoard,
-                        calculateBlockNumber(rowNumber-1, columnNumber-1), value);
+                //sudokuBoard.getBoard().get(rowNumber-1).removeOnePossibleValueFromAllElementsInRow(value);
+               // sudokuBoard.removeOnePossibleValueFromAllElementsInColumn(sudokuBoard, columnNumber-1, value);
+               // sudokuBoard.removeOnePossibleValueFromAllElementsInBlock(sudokuBoard,
+                       // calculateBlockNumber(rowNumber-1, columnNumber-1), value);
                 showSudokuBoard(sudokuBoard);
             }
         } while (checkData);
@@ -77,34 +81,32 @@ public class SudokuGame {
         row = solvedOrNot[1];
         col = solvedOrNot[2];
 
-                if (sudokuBoard.board.get(row).row.get(col).possibleValues.size() == 1) {
-                    int value = sudokuBoard.board.get(row).row.get(col).possibleValues.get(0);
-                    sudokuBoard.setElementInRow(row, col, value);
-                    sudokuBoard.getBoard().get(row).removeOnePossibleValueFromAllElementsInRow(value);
-                    sudokuBoard.removeOnePossibleValueFromAllElementsInColumn(sudokuBoard, col, value);
-                    int row_start = (row / 3) * 3;
-                    int col_start = (col / 3) * 3;
-                    for (int i = row_start; i < row_start + 3; i++) {
-                        for (int j = col_start; j < col_start + 3; j++) {
-                            sudokuBoard.getBlocks().get(i).getBlock().get(j).removeElementFromPossibleValues(value);
-                        }
-                    }
-                }
-
-
+//                if (sudokuBoard.board.get(row).row.get(col).possibleValues.size() == 1) {
+//                    int value = sudokuBoard.board.get(row).row.get(col).possibleValues.get(0);
+//                    sudokuBoard.setElementInRow(row, col, value);
+//                    sudokuBoard.getBoard().get(row).removeOnePossibleValueFromAllElementsInRow(value);
+//                    sudokuBoard.removeOnePossibleValueFromAllElementsInColumn(sudokuBoard, col, value);
+//                    int row_start = (row / 3) * 3;
+//                    int col_start = (col / 3) * 3;
+//                    for (int i = row_start; i < row_start + 3; i++) {
+//                        for (int j = col_start; j < col_start + 3; j++) {
+//                            sudokuBoard.getBlocks().get(i).getBlock().get(j).removeElementFromPossibleValues(value);
+//                        }
+//                    }
+//                }
 
         for(int i = 1; i <= 9; i++) {
             if(isSafe(sudokuBoard, i, row, col)){
                 sudokuBoard.setElementInRow(row, col, i);
-                sudokuBoard.getBoard().get(row).removeOnePossibleValueFromAllElementsInRow(i);
-                sudokuBoard.removeOnePossibleValueFromAllElementsInColumn(sudokuBoard, col, i);
-                int row_start = (row/3)*3;
-                int col_start = (col/3)*3;
-                for(int x = row_start; x < row_start+3; x++) {
-                    for(int y = col_start; y < col_start+3; y++) {
-                        sudokuBoard.getBlocks().get(x).getBlock().get(y).removeElementFromPossibleValues(i);
-                    }
-                }
+              //  sudokuBoard.getBoard().get(row).removeOnePossibleValueFromAllElementsInRow(i);
+                //sudokuBoard.removeOnePossibleValueFromAllElementsInColumn(sudokuBoard, col, i);
+//                int row_start = (row/3)*3;
+//                int col_start = (col/3)*3;
+//                for(int x = row_start; x < row_start+3; x++) {
+//                    for(int y = col_start; y < col_start+3; y++) {
+//                        sudokuBoard.getBlocks().get(x).getBlock().get(y).removeElementFromPossibleValues(i);
+//                    }
+//                }
                 if(resolveSudoku(sudokuBoard)) {
                     return true;
                 }
@@ -112,15 +114,6 @@ public class SudokuGame {
             }
         }
         return false;
-
-//        showSudokuBoard(sudokuBoard);
-//        Scanner scanner = new Scanner(System.in);
-//        String exitGame;
-//        do {
-//            System.out.println("r - od nowa  z - zakończ");
-//            exitGame = scanner.next();
-//        } while ((!exitGame.equals("r")) && (!(exitGame.equals("z"))));
-//        return (exitGame.equals("z"));
     }
 
     public static int[] numberUnassigned(SudokuBoard sudokuBoard, int row, int col) {
@@ -179,6 +172,24 @@ public class SudokuGame {
                 }
         }
         return false;
+    }
+
+    public boolean checkEmptyValue(SudokuBoard sudokuBoard, int rowNumber, int columnNumber) {
+        if(sudokuBoard.getBoard().get(rowNumber-1).getRow().get(columnNumber-1).getPossibleValues().size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkAllElementsSet(SudokuBoard sudokuBoard) {
+        for(int row = 0; row < 0; row++) {
+            for(int column = 0; column < 9; column++) {
+                if(sudokuBoard.getBoard().get(row).getRow().get(column).getValue() == -1) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public boolean checkPossibleValue(SudokuBoard sudokuBoard, int row, int column, int value) {
