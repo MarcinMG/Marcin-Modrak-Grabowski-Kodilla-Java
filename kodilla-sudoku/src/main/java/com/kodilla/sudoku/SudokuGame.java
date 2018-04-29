@@ -34,7 +34,7 @@ public class SudokuGame {
         boolean checkData;
         do {
             userInput = scanner.next();
-            if (userInput.equals("sudoku")) {
+            if ("sudoku".equalsIgnoreCase(userInput)) {
                 return true;
             }
             int coOrdinetesAndValue = Integer.parseInt(userInput);
@@ -175,10 +175,7 @@ public class SudokuGame {
     }
 
     public boolean checkEmptyValue(SudokuBoard sudokuBoard, int rowNumber, int columnNumber) {
-        if(sudokuBoard.getBoard().get(rowNumber-1).getRow().get(columnNumber-1).getPossibleValues().size() == 0) {
-            return true;
-        }
-        return false;
+        return (sudokuBoard.getBoard().get(rowNumber-1).getRow().get(columnNumber-1).getPossibleValues().size() == 0);
     }
 
     public boolean checkAllElementsSet(SudokuBoard sudokuBoard) {
